@@ -1,7 +1,6 @@
 import React from "react";
 import MovieList from "./MovieList";
 import MovieListWillWatch from "./MovieListWillWatch";
-// import movies from "./moviesData";
 import "bootstrap/dist/css/bootstrap.css";
 
 class App extends React.Component {
@@ -9,21 +8,18 @@ class App extends React.Component {
     super();
 
     this.state = {
-      moviesWillWatch: [],
-      moviesWillWatchCounts: 0
+      moviesWillWatch: []
     };
   }
 
-  addWatch = movie => {
+  addWatch = addmovie => {
     this.setState({
-      moviesWillWatchCounts: this.state.moviesWillWatchCounts + 1,
-      moviesWillWatch: [...this.state.moviesWillWatch, movie]
+      moviesWillWatch: [...this.state.moviesWillWatch, addmovie]
     });
   };
 
   removeWatch = id => {
     this.setState({
-      moviesWillWatchCounts: this.state.moviesWillWatchCounts - 1,
       moviesWillWatch: this.state.moviesWillWatch.filter(
         itemMovie => itemMovie.id !== id
       )
@@ -31,14 +27,11 @@ class App extends React.Component {
   };
 
   render() {
-    // console.log(this.state.moviesWillWatch)
-    // console.log(this.state.moviesWillWatchCounts)
     return (
       <div className="container">
         <div className="row mt-4">
-          <MovieList
-            // movies={movies}
-            addWatch={this.addWatch}
+          <MovieList 
+            addWatch={this.addWatch} 
             removeWatch={this.removeWatch}
           />
           <MovieListWillWatch
