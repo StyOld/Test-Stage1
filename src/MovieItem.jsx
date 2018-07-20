@@ -10,7 +10,9 @@ export default class MovieItem extends React.Component {
   }
 
   watchClick = () => {
-    this.state.willwatch ? this.props.addWatch(this.props.movie) : this.props.removeWatch(this.props.movie.id);
+    this.state.willwatch
+      ? this.props.addWatch(this.props.movie)
+      : this.props.removeWatch(this.props.movie.id);
     this.setState({
       willwatch: !this.state.willwatch
     });
@@ -19,7 +21,7 @@ export default class MovieItem extends React.Component {
   render() {
     const { movie: { title, vote_average, backdrop_path } } = this.props;
     return (
-      <div className="card" /*style={{width: "100%"}}*/>
+      <div className="card">
         <img
           className="card-img-top"
           src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
@@ -28,9 +30,12 @@ export default class MovieItem extends React.Component {
           <h6 className="card-title">{title}</h6>
           <div className="d-flex justify-content-between align-items-center">
             <p className="mb-0">Rating: {vote_average}</p>
-            <button type="button"
+            <button
+              type="button"
               onClick={this.watchClick}
-              className={this.state.willwatch ? "btn btn-secondary" : "btn btn-success"}
+              className={
+                this.state.willwatch ? "btn btn-secondary" : "btn btn-success"
+              }
             >
               Will Watch
             </button>
@@ -40,3 +45,4 @@ export default class MovieItem extends React.Component {
     );
   }
 }
+
